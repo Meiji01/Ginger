@@ -152,6 +152,13 @@ namespace GingerCore.Drivers
         [UserConfiguredDescription("Use Browser In Private/Incognito Mode (Please use 64bit Browse with Internet Explorer ")]
         public bool BrowserPrivateMode { get; set; }
 
+
+        [UserConfigured]
+        [UserConfiguredDefault("default")]
+        [UserConfiguredDescription("For IE, handles legacy alert issues. Selenium \"InternetExplorerUnexpectedAlertBehavior\" ")]
+        public string IEAlertBoxHandler { get; set; }
+
+
         [UserConfigured]
         [UserConfiguredDefault("false")]
         [UserConfiguredDescription("Only for Chrome & Firefox | Set \"true\" to run the browser in background (headless mode) for faster Execution")]
@@ -429,9 +436,31 @@ namespace GingerCore.Drivers
 
                         if (!(String.IsNullOrEmpty(WorkSpace.Instance.Solution.ApplitoolsConfiguration.ApiUrl) && String.IsNullOrWhiteSpace(WorkSpace.Instance.Solution.ApplitoolsConfiguration.ApiUrl)))
                             ieoptions.BrowserCommandLineArguments += "," + WorkSpace.Instance.Solution.ApplitoolsConfiguration.ApiUrl;
+
+
+                        //Meij-Garlic version added params
+                        //desire capabilities
+                        UnhandledPromptBehavior choice=UnhandledPromptBehavior.Default;
+                        if (IEAlertBoxHandler == "default")
+                            choice = UnhandledPromptBehavior.Default;
+                        else if (IEAlertBoxHandler == "ignore")
+                            //write  ignore
+                            choice = UnhandledPromptBehavior.Ignore;
+                        else if (IEAlertBoxHandler == "accept")
+                            //write accept
+                            choice = UnhandledPromptBehavior.Accept;
+                        else if (IEAlertBoxHandler == "dismiss")
+                            //write dismiss
+                            choice = UnhandledPromptBehavior.Dismiss;
+                        else
+                            choice = UnhandledPromptBehavior.Default;
+
+                        ieoptions.UnhandledPromptBehavior = choice;
+
                         InternetExplorerDriverService IEService = InternetExplorerDriverService.CreateDefaultService(GetDriversPathPerOS());
                         IEService.HideCommandPromptWindow = HideConsoleWindow;
                         Driver = new InternetExplorerDriver(IEService, ieoptions, TimeSpan.FromSeconds(Convert.ToInt32(HttpServerTimeOut)));
+
                         break;
                     #endregion
 

@@ -16,6 +16,7 @@
     <Version>4.1.0</Version>
     <OutputType>Library</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <BaseOutputPath>C:\WorkingFolder\Programming\GingerGit\GingerBuild</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

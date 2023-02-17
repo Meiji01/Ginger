@@ -1,3 +1,4 @@
+
 #region License
 /*
 Copyright © 2014-2022 European Support Limited
@@ -152,11 +153,18 @@ namespace GingerCore.Drivers
         [UserConfiguredDescription("Use Browser In Private/Incognito Mode (Please use 64bit Browse with Internet Explorer ")]
         public bool BrowserPrivateMode { get; set; }
 
-
+        #region Meij Garlic Version
+        //Added by Meij for Garlic version
         [UserConfigured]
         [UserConfiguredDefault("default")]
-        [UserConfiguredDescription("For IE, handles legacy alert issues. Selenium \"InternetExplorerUnexpectedAlertBehavior\" ")]
+        [UserConfiguredDescription("For IE, handles legacy alert issues (default, normal, accept dismiss). Selenium \"InternetExplorerUnexpectedAlertBehavior\" ")]
         public string IEAlertBoxHandler { get; set; }
+
+        [UserConfigured]
+        [UserConfiguredDefault("true")]
+        [UserConfiguredDescription("Enable auto check page is loaded Ginger function")]
+        public bool IsAutoCheckPageIfLoaded { get; set; }
+        #endregion
 
 
         [UserConfigured]
@@ -442,18 +450,29 @@ namespace GingerCore.Drivers
                         //desire capabilities
                         UnhandledPromptBehavior choice=UnhandledPromptBehavior.Default;
                         if (IEAlertBoxHandler == "default")
+                        {
                             choice = UnhandledPromptBehavior.Default;
+                        }
                         else if (IEAlertBoxHandler == "ignore")
+                        {
+
                             //write  ignore
                             choice = UnhandledPromptBehavior.Ignore;
+                        }
                         else if (IEAlertBoxHandler == "accept")
+                        {
                             //write accept
                             choice = UnhandledPromptBehavior.Accept;
+                        }
                         else if (IEAlertBoxHandler == "dismiss")
+                        {
                             //write dismiss
                             choice = UnhandledPromptBehavior.Dismiss;
+                        }
                         else
+                        {
                             choice = UnhandledPromptBehavior.Default;
+                        }
 
                         ieoptions.UnhandledPromptBehavior = choice;
 
@@ -1112,7 +1131,11 @@ namespace GingerCore.Drivers
                 act.Error += ex.Message;
             }
             //just to be sure the page is fully loaded
-            CheckifPageLoaded();
+            if (IsAutoCheckPageIfLoaded == true)
+            {
+                CheckifPageLoaded();
+            }
+               
         }
 
         public override string GetURL()

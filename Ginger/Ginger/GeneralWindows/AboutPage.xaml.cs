@@ -58,6 +58,8 @@ namespace Ginger.GeneralLib
             TBH.AddLineBreak();
             TBH.AddFormattedText("Version: " + ApplicationInfo.ApplicationVersionWithInfo, foregroundColor);
             TBH.AddLineBreak();
+            TBH.AddFormattedText("Hey, this is forked Version of Ginger by Meij Racpan based on above version. Some modifications are made",foregroundColor);
+            TBH.AddLineBreak();
             TBH.AddLineBreak();
 
             //Assembly Info

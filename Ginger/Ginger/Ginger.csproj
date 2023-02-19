@@ -33,6 +33,7 @@
     <None Remove="ApplicationModelsLib\APIModels\APIModelWizard\AddAPIModelIntro.md" />
     <None Remove="ApplicationModelsLib\POMModels\POMWizardLib\LearnWizard\AddPOMIntro.md" />
     <None Remove="DataSource\ImportExcelWizardLib\ImportDataSourceIntro.md" />
+    <None Remove="GeneralWindows\garlic.jpg" />
     <None Remove="GlobalSolutionLib\ImportItemWizardLib\ImportItemIntro.md" />
     <None Remove="Images\%40AccessDataSource_16x16.png" />
     <None Remove="Images\%40Action_32x32.png" />
@@ -621,6 +622,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="GeneralWindows\garlic.jpg" />
     <Resource Include="GingerIconNew.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

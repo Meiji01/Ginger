@@ -157,7 +157,7 @@ namespace GingerCore.Drivers
         //Added by Meij for Garlic version
         [UserConfigured]
         [UserConfiguredDefault("default")]
-        [UserConfiguredDescription("For IE, handles legacy alert issues (default, normal, accept dismiss). Selenium \"InternetExplorerUnexpectedAlertBehavior\" ")]
+        [UserConfiguredDescription("For IE only, handles legacy alert issues (default, normal, accept dismiss). Selenium \"InternetExplorerUnexpectedAlertBehavior\" ")]
         public string IEAlertBoxHandler { get; set; }
 
         [UserConfigured]
